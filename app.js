@@ -5,6 +5,18 @@ var path = require('path');
 http.createServer(function (request, response) {
     console.log('request ', request.url);
 
+
+    var extname = String(path.extname(filePath)).toLowerCase();
+    var mimeTypes = {
+        '.html': 'text/html',
+        '.css': 'text/css',
+        '.png': 'image/png',
+        '.js': 'text/javascript',
+        '.jpg': 'image/jpg',
+        '.mp4': 'video/mp4',
+    };
+
+    
     var filePath = '.' + request.url;
     if (filePath == './') {
         filePath = './index.html';
@@ -18,22 +30,11 @@ http.createServer(function (request, response) {
     if( filePath == './img/gallery/study') {
         filePath = './img/gallery/study.jpg';
     }
-
     if( filePath == './video/memes') {
         filePath = './video/students/memes.mp4';
     }
-
-
-    var extname = String(path.extname(filePath)).toLowerCase();
-    var mimeTypes = {
-        '.html': 'text/html',
-        '.css': 'text/css',
-        '.png': 'image/png',
-        '.js': 'text/javascript',
-        '.jpg': 'image/jpg',
-        '.mp4': 'video/mp4',
-    };
-
+    
+    
     var contentType = mimeTypes[extname] || 'application/octet-stream';
 
 
